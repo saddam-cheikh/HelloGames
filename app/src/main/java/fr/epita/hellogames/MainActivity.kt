@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private val baseURL = "https://androidlessonsapi.herokuapp.com/api/"
     private val jsonConverter = GsonConverterFactory.create(GsonBuilder().create())
     private val retrofit = Retrofit.Builder().baseUrl(baseURL).addConverterFactory(jsonConverter).build()
-    private val service: WebService = retrofit.create(WebService::class.java)
+    private val service: Interface = retrofit.create(Interface::class.java)
     private val callback = object : Callback<List<Games>> {
         override fun onFailure(call: Call<List<Games>>?, t: Throwable?) {
             Log.d("TAG", "WebService call failed")

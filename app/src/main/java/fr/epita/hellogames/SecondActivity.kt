@@ -13,14 +13,13 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
 class SecondActivity : AppCompatActivity() {
 
     var game = Games()
     val baseURL = "https://androidlessonsapi.herokuapp.com/api/"
     val jsonConverter = GsonConverterFactory.create(GsonBuilder().create())
     val retrofit = Retrofit.Builder().baseUrl(baseURL).addConverterFactory(jsonConverter).build()
-    val service: WebService = retrofit.create(WebService::class.java)
+    val service: Interface = retrofit.create(Interface::class.java)
     val callback = object : retrofit2.Callback<Games> {
         override fun onFailure(call: Call<Games>?, t: Throwable?) {
             Log.d("TAG", "Call to the Webservice failed")
@@ -33,12 +32,12 @@ class SecondActivity : AppCompatActivity() {
                     val data = response.body()
                     if (data != null) {
                         game = data
-                        findViewById<ImageView>(R.id.imageView).setImageResource(getImageGame(game.id!!))
-                        findViewById<TextView>(R.id.textName).text = "Name: " + game.name
-                        findViewById<TextView>(R.id.textType).text = "Type: " + game.type
-                        findViewById<TextView>(R.id.textNbPlayers).text = "Nb Player: " + game.players.toString()
-                        findViewById<TextView>(R.id.textYear).text = "Year: " + game.year.toString()
-                        findViewById<TextView>(R.id.textDescription).text = "Description: " + game.description_en
+                        findViewById<ImageView>(R.id.imageGame).setImageResource(getImageGame(game.id!!))
+                        findViewById<TextView>(R.id.nameGame).text = "Name: " + game.name
+                        findViewById<TextView>(R.id.typeGame).text = "Type: " + game.type
+                        findViewById<TextView>(R.id.nbPlayersGame).text = "Nb Player: " + game.players.toString()
+                        findViewById<TextView>(R.id.yearGame).text = "Year: " + game.year.toString()
+                        findViewById<TextView>(R.id.descriptionGame).text = "Description: " + game.description_en
 
                         knowMore.setOnClickListener{
                             val url = game.url
@@ -57,7 +56,7 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
         val  selectGame = intent.getIntExtra(" selectGame", -1)
-        service.DescGame( selectGame).enqueue(callback)
+        service.descriptionGame( selectGame).enqueue(callback)
     }
 
     fun getImageGame(id: Int): Int {
