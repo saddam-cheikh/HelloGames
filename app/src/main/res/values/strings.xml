@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Hello Games</string>
+    <string name="game_info">Game Info</string>
+    <string name="do_you_want_to_know_more">DO YOU WANT TO KNOW MORE?</string>
+    <string name="year">Year:</string>
+    <string name="nb_players">Nb players:</string>
+    <string name="type">Type:</string>
+    <string name="name">Name:</string>
+    <string name="imagegame">ImageGame</string>
+    <string name="imagetopleft">imageTopLeft</string>
+    <string name="imagetopright">imageTopRight</string>
+    <string name="imagebottomleft">imageBottomLeft</string>
+    <string name="imagebotoomright">imageBotoomRight</string>
+</resources>
